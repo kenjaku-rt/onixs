@@ -3,28 +3,23 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include <float.h>
 
 #include <avr/io.h>
 
+#include "bits.h"
 #include "def_shortcuts.h"
 
-typedef struct {
-	volatile uint8_t* port;
-	uint8_t pin;	
-} relay_t;
+#define RELAY_HEATER_PORT &PORTB
+#define RELAY_HEATER_PIN  PB3
 
-static inline void relay_init(const relay_t config) {
-	MAKE_DDR(config.port) |= _BV(config.pin);
-}
+#define RELAY_VENT_PORT	  &PORTC
+#define RELAY_VENT_PIN	  PC2
 
-static inline void relay_modify(const relay_t config, bool state) {
-	if (state)
-		MAKE_PORT(config.port) |= _BV(config.pin);
-	else
-		MAKE_PORT(config.port) &= ~_BV(config.pin);
-}
+#define RELAY_HEATER_INIT(); MAKE_DDR(RELAY_HEATER_PORT) |= BV(RELAY_HEATER_PIN);
+#define RELAY_VENT_INIT();   MAKE_DDR(RELAY_VENT_PORT) |= BV(RELAY_VENT_PIN);
 
-#include "undef_shortcuts.h"
+#define RELAY_INIT();\
+RELAY_HEATER_INIT();\
+RELAY_VENT_INIT();
 
-#endif /* RELAY_H_ */
+#endif

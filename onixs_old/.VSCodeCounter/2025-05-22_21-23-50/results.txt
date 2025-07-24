@@ -1,0 +1,53 @@
+Date : 2025-05-22 21:23:50
+Directory : c:\Projects\github\onixs\onixs_old
+Total : 21 files,  1194 codes, 232 comments, 360 blanks, all 1786 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C++      |         14 |        584 |         30 |        164 |        778 |
+| C        |          2 |        358 |        174 |         90 |        622 |
+| Makefile |          4 |        166 |         28 |        106 |        300 |
+| XML      |          1 |         86 |          0 |          0 |         86 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                         | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                            |         21 |      1,194 |        232 |        360 |      1,786 |
+| . (Files)                                                    |          1 |         86 |          0 |          0 |         86 |
+| Debug                                                        |          2 |         83 |         14 |         53 |        150 |
+| Release                                                      |          2 |         83 |         14 |         53 |        150 |
+| include                                                      |         14 |        584 |         30 |        164 |        778 |
+| src                                                          |          2 |        358 |        174 |         90 |        622 |
++--------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                     | language | code       | comment    | blank      | total      |
++--------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Projects\github\onixs\onixs_old\Debug\Makefile            | Makefile |         81 |         11 |         49 |        141 |
+| c:\Projects\github\onixs\onixs_old\Debug\makedep.mk          | Makefile |          2 |          3 |          4 |          9 |
+| c:\Projects\github\onixs\onixs_old\Release\Makefile          | Makefile |         81 |         11 |         49 |        141 |
+| c:\Projects\github\onixs\onixs_old\Release\makedep.mk        | Makefile |          2 |          3 |          4 |          9 |
+| c:\Projects\github\onixs\onixs_old\include\adc.h             | C++      |         14 |          0 |          5 |         19 |
+| c:\Projects\github\onixs\onixs_old\include\def_shortcuts.h   | C++      |          3 |          0 |          4 |          7 |
+| c:\Projects\github\onixs\onixs_old\include\ds1307.h          | C++      |         97 |          0 |         24 |        121 |
+| c:\Projects\github\onixs\onixs_old\include\i2c.h             | C++      |         34 |          1 |         11 |         46 |
+| c:\Projects\github\onixs\onixs_old\include\keyboard.h        | C++      |         70 |          0 |         13 |         83 |
+| c:\Projects\github\onixs\onixs_old\include\lcd2004.h         | C++      |         84 |          1 |         19 |        104 |
+| c:\Projects\github\onixs\onixs_old\include\max6675.h         | C++      |         30 |          0 |         10 |         40 |
+| c:\Projects\github\onixs\onixs_old\include\onixs.h           | C++      |         87 |         14 |         22 |        123 |
+| c:\Projects\github\onixs\onixs_old\include\relay.h           | C++      |         22 |          0 |          9 |         31 |
+| c:\Projects\github\onixs\onixs_old\include\saves.h           | C++      |         43 |          5 |         13 |         61 |
+| c:\Projects\github\onixs\onixs_old\include\spi.h             | C++      |         45 |          2 |         13 |         60 |
+| c:\Projects\github\onixs\onixs_old\include\timer_isr.h       | C++      |         19 |          4 |          8 |         31 |
+| c:\Projects\github\onixs\onixs_old\include\undef_shortcuts.h | C++      |          3 |          0 |          3 |          6 |
+| c:\Projects\github\onixs\onixs_old\include\usart.h           | C++      |         33 |          3 |         10 |         46 |
+| c:\Projects\github\onixs\onixs_old\onixs.componentinfo.xml   | XML      |         86 |          0 |          0 |         86 |
+| c:\Projects\github\onixs\onixs_old\src\main.c                | C        |        303 |        170 |         71 |        544 |
+| c:\Projects\github\onixs\onixs_old\src\saves.c               | C        |         55 |          4 |         19 |         78 |
+| Total                                                        |          |      1,194 |        232 |        360 |      1,786 |
++--------------------------------------------------------------+----------+------------+------------+------------+------------+

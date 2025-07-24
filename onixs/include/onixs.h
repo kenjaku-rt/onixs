@@ -1,37 +1,40 @@
 #ifndef ONIXS_H_
 #define ONIXS_H_
 
+/**
+ * @file onixs.h
+ * @brief Основной файл для контроллера печи.
+ * 
+ * @author Матвей Рыбалкин
+ * @date 22.05.2025
+ * @version 2.0
+ */
+
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <string.h>
 
 #include <avr/io.h>
+#include <avr/pgmspace.h>
+#include <avr/eeprom.h>
 #include <util/delay.h>
-#include <avr/interrupt.h>
 
-#include "spi.h"
-#include "usart.h"
-
-#include "saves.h"
+// Next includes contain global variables:
 #include "relay.h"
-#include "max6675.h"
-#include "lcd1604.h"
+#include "display.h"
+#include "rtc.h"
+#include "thermo.h"
+#include "memory.h"
+#include "interface.h"
+#include "timers.h"
 
-#define TERMINATE_IN_FAILURE(func) if (!func) { return -1; }
+#define ONIXS_PERPH_INIT();\
+RELAY_INIT();\
+display_init();\
+rtc_init();\
+THERMO_INIT();
 
-typedef struct {
-	lcd_1604_t display;
-	max6675_t thermocouple;
-	relay_t relay;
-	time_map_t memory;
-} onixs_device_t;
 
-bool onixs_init(onixs_device_t device) {
-	
-	lcd_1604_init(device.display);
-	
-	return true;
-}
 
-#endif /* ONIXS_H_ */
+
+#endif // ONIXS_H_

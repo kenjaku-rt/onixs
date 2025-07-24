@@ -37,18 +37,21 @@ typedef struct {
 } time_map_t;
 
 #define CELLS_INVALID_NUMBER UINT16_MAX
+#define NUM_OF_ELEM_SHIFT 1
+#define GET_VENT(cell) (bool)(cell & (1 << 15))
+#define GET_TEMP(cell) (cell & ~(1 << 15))
 
-extern time_map_t onixs_memory_download(void);
-extern void onixs_memory_upload(time_map_t current_state);
+extern time_map_t saves_memory_download(void);
+extern void saves_memory_upload(time_map_t current_state);
 
-inline void onixs_memory_cherry_pick(const time_min_t current_time, const uint16_t current_mode) {
+inline void saves_memory_cherry_pick(const time_min_t current_time, const uint16_t current_mode) {
 	eeprom_busy_wait();
 	eeprom_write_word((uint16_t*)(EEPROM_GET_ADDR(EEPROM_PREV_TIME_SHIFT)), current_time);
 	eeprom_busy_wait();
 	eeprom_write_word((uint16_t*)(EEPROM_GET_ADDR(EEPROM_PREV_CELL_SHIFT)), current_mode);
 }
 
-inline void onixs_memory_full_cleanup(const size_t limit) {
+inline void saves_memory_full_cleanup(const size_t limit) {
 	for (size_t i = 0; i < limit; ++i) {
 		eeprom_busy_wait();
 		eeprom_write_word((uint16_t*)i, 0);

@@ -1,50 +1,45 @@
-#include <stdlib.h>
-#include <avr/io.h>
-
 #include <onixs.h>
 
 int main(void) {
-	/*
-	static const onixs_device_t device = {
-		
-		.display = {
-			.e_pin = 1,
-			.rs_pin = 2,
-			.rw_pin = 3,
-			.bus_port_reg = &PORTD,
-			.control_port_reg = &PORTC,
-		},
-		
-		
-	};
-	TERMINATE_IN_FAILURE(onixs_init(device));
-	*/
-	usart_init(9600);
-	usart_write_str("Start:\n");
+	ONIXS_PERPH_INIT();
+	INTERFACE_INTRO();
+
+	memory_get_error_t error_code = memory_get(&device_eeprom);
+	if (error_code != MEMORY_GET_OK)
+		INTERFACE_STARTUP_ERROR(error_code);
 	
-	const static max6675_t config = {
-		.port = &PORTB,
-		.miso_pin = PB6,
-		.mosi_pin = PB5,
-		.sck_pin = PB7,
-		.ss_pin = PB4,
-	};
-	
-	max6675_init(config);
-	
-	char buffer[10];
-	memset(buffer, '\0', 10 * sizeof(char));
-	
+	TIMERS_ENABLE();
+
 	while (1) {
-		usart_write_str("\nT = ");
-		max6675_update(config);
-		if (max6675_temp == INFINITY)
-			usart_write_str("ERROR!");
-		else
-			usart_write_str(dtostrf(max6675_temp, 6, 3, buffer));
-		_delay_ms(250);
+		DISPLAY_HOME();
+		DISPLAY_CHAR('_');
+		DISPLAY_INT(device_eeprom.session.cell_n);
+		DISPLAY_CHAR(':');
+		DISPLAY_INT(device_eeprom.cells.data[0][0]);
+		_delay_ms(100);
+		DISPLAY_CLEAR();
 	}
 
-	
 	return 0;
 }
+
+
+	/*
+	memory_map_t mem;
+
+	mem.session.rtc_hour = 20;
+	mem.session.rtc_min = 10;
+	mem.session.cell_n = 0;
+	mem.session.cnt_min = 100;
+
+	mem.cells.number = 6;
+	mem.cells.data = (sys_t**)MALLOC(6, sizeof(sys_t*));
+
+	const sys_t num_of_stages = 5;
+	for (sys_t i = 0; i < mem.cells.number; ++i) {
+		mem.cells.data[i] = calloc(1 + num_of_stages * 2, sizeof(sys_t));
+		mem.cells.data[i][0] = num_of_stages;
+	}
+
+	memory_set(mem);
+*/

@@ -101,7 +101,6 @@
   <avrgcc.compiler.warnings.PedanticWarningsAsErrors>True</avrgcc.compiler.warnings.PedanticWarningsAsErrors>
   <avrgcc.compiler.miscellaneous.OtherFlags>-std=gnu11 -g0  -s</avrgcc.compiler.miscellaneous.OtherFlags>
   <avrgcc.linker.general.OmitAllSymbolInformation>True</avrgcc.linker.general.OmitAllSymbolInformation>
-  <avrgcc.linker.general.NoSharedLibraries>True</avrgcc.linker.general.NoSharedLibraries>
   <avrgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
@@ -160,53 +159,58 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="include\" />
-    <Folder Include="include\perph" />
-    <Folder Include="src" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="include\bits.h">
+    <Compile Include="include\adc.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="include\def_shortcuts.h">
+    <Compile Include="include\ds1307.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="include\display.h">
+    <Compile Include="include\i2c.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="include\interface.h">
+    <Compile Include="include\keyboard.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="include\memory.h">
+    <Compile Include="include\lcd2004.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="include\perph\spi.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="include\perph\twi.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="include\relay.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="include\thermo.h">
+    <Compile Include="include\max6675.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\onixs.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="include\rtc.h">
+    <Compile Include="include\relay.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="include\timers.h">
+    <Compile Include="include\saves.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\def_shortcuts.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\spi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="include\timer_isr.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="include\undef_shortcuts.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="include\usart.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\saves.c">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="include" />
+    <Folder Include="src" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

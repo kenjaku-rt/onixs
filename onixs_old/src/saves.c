@@ -12,7 +12,7 @@
 
 #define _FREE_USAGE_MEMORY(); for (uint16_t j = 0; j < i; ++j) { free(result.cells.data[j]); } free(result.cells.data);
 
-time_map_t onixs_memory_download(void) {
+time_map_t saves_memory_download(void) {
 	
 	time_map_t result;
 	
@@ -54,8 +54,8 @@ time_map_t onixs_memory_download(void) {
 
 #undef _FREE_USAGE_MEMORY
 
-void onixs_memory_upload(time_map_t current_state) {
-	onixs_memory_cherry_pick(current_state.prev_time, current_state.prev_cell);
+void saves_memory_upload(time_map_t current_state) {
+	saves_memory_cherry_pick(current_state.prev_time, current_state.prev_cell);
 	eeprom_busy_wait();
 	eeprom_write_word((uint16_t*)(EEPROM_GET_ADDR(EEPROM_NUM_OF_CELLS_SHIFT)), current_state.cells.num); 
 
@@ -65,13 +65,33 @@ void onixs_memory_upload(time_map_t current_state) {
 	const uint16_t begin_of_cells_shift = EEPROM_CELLS_SHIFT + current_state.cells.num;
 	uint16_t cells_shift = 0;
 	for (uint16_t i = 0; i < current_state.cells.num; ++i) {
-		
 		eeprom_busy_wait();
 		uint16_t current_cells_addr = begin_of_cells_shift + cells_shift;
 		eeprom_write_word((uint16_t*)(EEPROM_GET_ADDR(EEPROM_CELLS_SHIFT + i)), current_cells_addr);
 		uint16_t num_of_mins = (current_state.cells.data[i][0] * 2) + 1;
-		eeprom_write_block((uint16_t*)current_state.cells.data[i], (void*)EEPROM_GET_ADDR(current_cells_addr), num_of_mins * 2 * sizeof(uint16_t));
+		eeprom_busy_wait();
+		eeprom_write_block((uint16_t*)current_state.cells.data[i], (void*)EEPROM_GET_ADDR(current_cells_addr), num_of_mins * sizeof(uint16_t));
 		cells_shift += num_of_mins;
 	}
 
 }
+
+
+	/*memory_map_t mem;
+
+	mem.session.rtc_hour = 20;
+	mem.session.rtc_min = 10;
+	mem.session.cell_n = 0;
+	mem.session.cnt_min = 100;
+
+	mem.cells.number = 6;
+	mem.cells.data = (sys_t**)MALLOC(6, sizeof(sys_t*));
+
+	const sys_t num_of_stages = 5;
+	for (sys_t i = 0; i < mem.cells.number; ++i) {
+		mem.cells.data[i] = calloc(1 + num_of_stages * 2, sizeof(sys_t));
+		mem.cells.data[i][0] = num_of_stages;
+	}
+
+	memory_set(mem);
+*/

@@ -19,8 +19,9 @@ typedef struct {
 static inline void spi_init(const spi_t config) {
 	MAKE_DDR(config.port) |= _BV(config.mosi_pin) | _BV(config.ss_pin) | _BV(config.sck_pin);
 	MAKE_PORT(config.port) |= _BV(config.ss_pin);
-	// 2 Mz -> no prescaler
-	SPCR |= _BV(SPE) | _BV(MSTR);
+	// 2 Mz -> /8
+	SPCR |= _BV(SPE) | _BV(MSTR); //| _BV(SPR0);
+	SPSR |=  _BV(SPI2X);
 	(void)SPSR;
 	(void)SPDR;
 }
